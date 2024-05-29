@@ -132,11 +132,10 @@ transmission() {
 		procd_set_param env TRANSMISSION_WEB_HOME="$web_home"
 	fi
 
-	# procd_add_jail transmission log
+	#procd_add_jail transmission log
 	procd_add_jail_mount "$config_file"
 	procd_add_jail_mount_rw "$download_dir"
-	web_home="${web_home:-/usr/share/transmission/web}"
-	[ -d "$web_home" ] && procd_add_jail_mount "$web_home"
+	procd_add_jail_mount "$web_home"
 	procd_close_instance
 }
 
